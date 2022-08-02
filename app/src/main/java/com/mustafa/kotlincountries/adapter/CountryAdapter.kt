@@ -4,13 +4,17 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.ViewModel
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.mustafa.kotlincountries.databinding.ItemRowBinding
 import com.mustafa.kotlincountries.model.CountryModel
 import com.mustafa.kotlincountries.util.uploadInternet
+import com.mustafa.kotlincountries.view.FeedFragmentDirections
 import java.util.ArrayList
 
 class CountryAdapter(var countryList:ArrayList<CountryModel>): RecyclerView.Adapter<CountryAdapter.CountryHolder>() {
@@ -28,6 +32,10 @@ class CountryAdapter(var countryList:ArrayList<CountryModel>): RecyclerView.Adap
       //  Glide.with(holder.binding.root.context).load(countryList.get(index = position).countryImage.toString()).into(holder.binding.countryFlagImage)
         holder.binding.countryFlagImage.uploadInternet(countryList.get(index = position).countryImage.toString(), progressDrawable = placeholderProgressBar(holder.binding.root.context))
 
+        holder.binding.root.setOnClickListener {
+            val action =  FeedFragmentDirections.actionFeedFragmentToCountryDetailsFragment(countryList.get(position).uuid)
+            it.findNavController().navigate(action)
+        }
     }
 
     override fun getItemCount(): Int {

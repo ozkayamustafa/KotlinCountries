@@ -1,5 +1,6 @@
 package com.mustafa.kotlincountries.viewmodel
 
+import android.app.Application
 import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,17 +11,19 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class CountryViewModel:ViewModel() {
+class CountryViewModel(application: Application):BaseViewModel(application) {
 
     val countries = MutableLiveData<CountryModel>()
-    val coutryDao = MutableLiveData<CountryDAO>()
-    fun getDataFromRoom(context: Context){
+
+
+
+    fun getDataFromRoom(uuid:Int){
         // Room database kaydedecek
-        coutryDao.value = CountryDatabase.invoke(context = context).countryDao()
-
-
-
-
+            launch {
+                 val dao = CountryDatabase(getApplication()).countryDao()
+                 val country = dao.getSelectCountry(uuid)
+                    countries.value = country
+            }
     }
 
 

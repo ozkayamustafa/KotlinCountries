@@ -5,6 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.mustafa.kotlincountries.model.CountryModel
+import com.mustafa.kotlincountries.service.CountryDatabase
 
 @Database(entities = arrayOf(CountryModel::class), version = 1)
 abstract class CountryDatabase : RoomDatabase() {
@@ -14,14 +15,14 @@ abstract class CountryDatabase : RoomDatabase() {
        @Volatile private  var instance : CountryDatabase? = null
         private val lock = Any()
 
-        operator fun invoke( context: Context) = instance ?: synchronized(lock){
+        operator fun invoke(context: Context): CountryDatabase = instance ?: synchronized(lock){
             instance ?: makeDatabase(context).also {
                 instance = it
             }
         }
 
         private fun makeDatabase(context:Context) =
-            Room.databaseBuilder(context.applicationContext,CountryDatabase::class.java,"countryDatabase").build()
+            Room.databaseBuilder(context.applicationContext,CountryDatabase::class.java,"countryDatabase.db").build()
     }
 
 

@@ -18,7 +18,8 @@ interface CountryDAO {
     @Query("SELECT * FROM CountryModel WHERE uuid = :countryId ")
     suspend fun getSelectCountry(countryId: Int):CountryModel
 
-
+    @Query("DELETE FROM CountryModel")
+    suspend fun deleteALlCountry()
 
 
 }
