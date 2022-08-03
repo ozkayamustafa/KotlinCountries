@@ -45,21 +45,22 @@ class CountryDetailsFragment : Fragment() {
 
     private fun observeDataLive(context: Context){
         viewmodel.countries.observe(viewLifecycleOwner){
-            binding.countryDetailImage.uploadInternet(it.countryImage, progressDrawable = progressDrawble(context))
+          /*  binding.countryDetailImage.uploadInternet(it.countryImage, progressDrawable = progressDrawble(context))
             binding.countryName.text = it.countryName
             binding.countryLanguage.text = it.countryLanguage
             binding.countryCapital.text = it.countryCapital
-            binding.countryRegion.text = it.countryRegion
+            binding.countryRegion.text = it.countryRegion*/
+            binding.countryDetail = it
         }
 
     }
 
-    private  fun progressDrawble(context: Context):CircularProgressDrawable{
+   /* private  fun progressDrawble(context: Context):CircularProgressDrawable{
         return  CircularProgressDrawable(context).apply {
             strokeWidth = 8F
             centerRadius= 40F
             start()
         }
-    }
+    }*/
 
 }

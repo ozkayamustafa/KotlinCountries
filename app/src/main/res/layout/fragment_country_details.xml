@@ -3,6 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     >
+    <data>
+        <variable
+            name="countryDetail"
+            type="com.mustafa.kotlincountries.model.CountryModel" />
+    </data>
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -15,6 +20,7 @@
         android:minHeight="200dp"
         android:padding="5dp"
         android:src="@drawable/ic_launcher_background"
+        android:downloadImageUrl="@{countryDetail.countryImage}"
         android:layout_alignParentTop="true"
         android:scaleType="fitCenter"
         >
@@ -27,7 +33,7 @@
         android:textSize="22sp"
         android:textStyle="bold"
         android:layout_below="@id/countryDetailImage"
-        android:text="Country Name"
+        android:text="@{countryDetail.countryName}"
         android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
         android:gravity="center"
@@ -39,7 +45,7 @@
         android:textSize="20sp"
         android:textStyle="bold"
         android:layout_below="@id/countryName"
-        android:text="Country Capital"
+        android:text="@{countryDetail.countryCapital}"
         android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
         android:gravity="center"
@@ -51,7 +57,7 @@
         android:textSize="18sp"
         android:textStyle="bold"
         android:layout_below="@id/countryCapital"
-        android:text="Country Region"
+        android:text="@{countryDetail.countryRegion}"
         android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
         android:gravity="center"
@@ -63,7 +69,7 @@
         android:textSize="16sp"
         android:textStyle="bold"
         android:layout_below="@id/countryRegion"
-        android:text="Country Currency"
+        android:text="@{countryDetail.countryCurreny}"
         android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
         android:gravity="center"
@@ -76,7 +82,7 @@
         android:textSize="14sp"
         android:textStyle="bold"
         android:layout_below="@id/countryCurrency"
-        android:text="Country language"
+        android:text="@{countryDetail.countryLanguage}"
         android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
         android:gravity="center"
